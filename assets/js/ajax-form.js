@@ -27,21 +27,27 @@
 
     // Success function
     function done_func(response) {
-        message.fadeIn().removeClass('alert-danger').addClass('alert-success');
-        message.text(response);
-        setTimeout(function () {
-            message.fadeOut();
-        }, 3000);
-        form.find('input:not([type="submit"]), textarea').val('');
+        response = JSON.parse(response);
+        if(response.status == 200){
+            message.fadeIn().removeClass('alert-danger').addClass('alert-success');
+            message.text(response.msg);
+            setTimeout(function () {
+                message.fadeOut();
+            }, 3000);
+            form.find('input:not([type="submit"]), textarea').val('');
+        }
     }
 
     // fail function
-    function fail_func(data) {
-        message.fadeIn().removeClass('alert-success').addClass('alert-success');
-        message.text(data.responseText);
-        setTimeout(function () {
-            message.fadeOut();
-        }, 3000);
+    function fail_func(response) {
+        response = JSON.parse(response);
+        if(response.status == 400){
+            message.fadeIn().removeClass('alert-success').addClass('alert-success');
+            message.text(response.msg);
+            setTimeout(function () {
+                message.fadeOut();
+            }, 3000);
+        }
     }
     
     form.submit(function (e) {

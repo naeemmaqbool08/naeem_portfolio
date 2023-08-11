@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-RewriteRule ^$ index.html [L]
+RewriteRule ^$ home1.phtml [L]
 
 
 </IfModule>
